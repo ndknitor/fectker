@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+      "moduleResolution": "node",
+      "target": "ESNext",
+      "esModuleInterop": true,
+      "jsx": "react",
+      "strict": true,
+      "outDir": "./",
+      "declaration": true
+    },
+    "include": [
+      "src/**/*.ts",
+      "src/**/*.tsx",
+      "src/index.ts"
+    ],
+    "exclude": [
+      "node_modules",
+      "components",
+      "enums",
+      "functions",
+      "hooks"
+    ]
+  }
