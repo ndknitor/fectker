@@ -197,6 +197,14 @@ export class Fetcker extends FetckerInitOption {
 }
 
 
+export function createFetcker(options: FetckerInitOption) {
+    const result = new Fetcker();
+    result.baseUrl = options.baseUrl;
+    result.defaultHeaders = options.defaultHeaders;
+    result.requestTimeOut = options.requestTimeOut;
+    result.onError = options.onError;
+    return result;
+}
 
 function isClient() {
     return typeof window !== 'undefined';

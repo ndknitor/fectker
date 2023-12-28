@@ -1,7 +1,8 @@
-import { Fetcker, FetckerError, FetckerInitOption, FetckerResponse } from './fetcker';
+import { Fetcker, FetckerError, FetckerInitOption, FetckerResponse, createFetcker } from './fetcker';
 import { HttpStatusCode } from './HttpStatusCode';
 
 export {
+    createFetcker,
     Fetcker,
     FetckerError,
     FetckerInitOption,
