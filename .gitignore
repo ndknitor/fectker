@@ -1,5 +1,5 @@
-fetcker.*
-HttpStatusCode.*
-index.*
-yarn.lock
+/fetcker.*
+/HttpStatusCode.*
+/index.*
+./yarn.lock
 /node_modules/
