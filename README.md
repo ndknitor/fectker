@@ -13,16 +13,13 @@ npm install fetcker
 ```javascript
 import { createFetcker } from "fetcker";
 
-const API_BASE_URL = "https://api.example.com";
-const REQUEST_TIMEOUT = 6000; // milliseconds
-
 // Create a fetcker instance
 const fetcker = createFetcker({
-    baseUrl: API_BASE_URL,
-    requestTimeOut: parseInt(REQUEST_TIMEOUT.toString()),
+    baseUrl: "https://api.example.com",
+    requestTimeOut: 6000, // milliseconds
     onError: (error, isClient) => {
-        let message = "";
         if (isClient) {
+            let message = "";
             switch (error.name) {
                 case "TypeError": message = "Network connection error";
                     break;
@@ -30,6 +27,9 @@ const fetcker = createFetcker({
                     break;
             }
             Message.error(message); // Assuming Message is a component for displaying errors
+        }
+        else {
+            console.log(error);
         }
     }
 });
