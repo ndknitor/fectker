@@ -47,7 +47,7 @@ export class Fetcker extends FetckerInitOption {
             return responseFactory<T>(e);
         }
     };
-    post: <T>(url: string, data: unknown, init: RequestInit) => Promise<FetckerResponse<T>> = async <T>(url: string, data: unknown, init: RequestInit) => {
+    post: <T>(url: string, data: unknown, init?: RequestInit) => Promise<FetckerResponse<T>> = async <T>(url: string, data: unknown, init?: RequestInit) => {
         try {
             const response = (await fetchTimeout(`${this.baseUrl}${url}`, {
                 ...init,
@@ -67,7 +67,7 @@ export class Fetcker extends FetckerInitOption {
             return responseFactory<T>(e);
         }
     };
-    postForm: <T>(url: string, data: FormData, init: RequestInit) => Promise<FetckerResponse<T>> = async <T>(url: string, data: FormData, init: RequestInit) => {
+    postForm: <T>(url: string, data: FormData, init?: RequestInit) => Promise<FetckerResponse<T>> = async <T>(url: string, data: FormData, init?: RequestInit) => {
         try {
             const response = (await fetchTimeout(`${this.baseUrl}${url}`, {
                 ...init,
@@ -86,7 +86,7 @@ export class Fetcker extends FetckerInitOption {
             return responseFactory<T>(error);
         }
     }
-    put: <T>(url: string, data: unknown, init: RequestInit) => Promise<FetckerResponse<T>> = async <T>(url: string, data: unknown, init: RequestInit) => {
+    put: <T>(url: string, data: unknown, init?: RequestInit) => Promise<FetckerResponse<T>> = async <T>(url: string, data: unknown, init?: RequestInit) => {
         try {
             const response = (await fetchTimeout(`${this.baseUrl}${url}`, {
                 ...init,
@@ -106,7 +106,7 @@ export class Fetcker extends FetckerInitOption {
             return responseFactory<T>(e);
         }
     }
-    putForm: <T>(url: string, data: FormData, init: RequestInit) => Promise<FetckerResponse<T>> = async <T>(url: string, data: FormData, init: RequestInit) => {
+    putForm: <T>(url: string, data: FormData, init?: RequestInit) => Promise<FetckerResponse<T>> = async <T>(url: string, data: FormData, init?: RequestInit) => {
         try {
             const response = (await fetchTimeout(`${this.baseUrl}${url}`, {
                 ...init,
@@ -125,7 +125,7 @@ export class Fetcker extends FetckerInitOption {
             return responseFactory<T>(error);
         }
     }
-    patch: <T>(url: string, data: unknown, init: RequestInit) => Promise<FetckerResponse<T>> = async <T>(url: string, data: unknown, init: RequestInit) =>{
+    patch: <T>(url: string, data: unknown, init?: RequestInit) => Promise<FetckerResponse<T>> = async <T>(url: string, data: unknown, init?: RequestInit) =>{
         try {
             const response = (await fetchTimeout(`${this.baseUrl}${url}`, {
                 ...init,
@@ -145,7 +145,7 @@ export class Fetcker extends FetckerInitOption {
             return responseFactory<T>(e);
         }
     }
-    patchForm: <T>(url: string, data: FormData, init: RequestInit) => Promise<FetckerResponse<T>> = async <T>(url: string, data: FormData, init: RequestInit) => {
+    patchForm: <T>(url: string, data: FormData, init?: RequestInit) => Promise<FetckerResponse<T>> = async <T>(url: string, data: FormData, init?: RequestInit) => {
         try {
             const response = (await fetchTimeout(`${this.baseUrl}${url}`, {
                 ...init,
