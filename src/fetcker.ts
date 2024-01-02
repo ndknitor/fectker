@@ -26,13 +26,15 @@ export class Fetcker extends FetckerInitOption {
         const { [key]: removedHeader, ...remainingHeaders } = this.defaultHeaders!;
         this.defaultHeaders = remainingHeaders;
     };
-    setAuthorizationBearer: (token: string) => void = (token) => {
-        this.setHeader("Authorization", `Bearer ${token}`);
+    setAuthorizationBearer: (token?: string) => void = (token?) => {
+        if (token) {
+            this.setHeader("Authorization", `Bearer ${token}`);
+        }
     };
     removeAuthorizationBearer: () => void = () => {
         this.removeHeader("Authorization");
     };
-    
+
     get: <T>(url: string, init?: RequestInit) => Promise<FetckerResponse<T>> = async <T>(url: string, init?: RequestInit) => {
         try {
             const response = (await fetchTimeout(`${this.baseUrl}${url}`, {
@@ -125,7 +127,7 @@ export class Fetcker extends FetckerInitOption {
             return responseFactory<T>(error);
         }
     }
-    patch: <T>(url: string, data: unknown, init?: RequestInit) => Promise<FetckerResponse<T>> = async <T>(url: string, data: unknown, init?: RequestInit) =>{
+    patch: <T>(url: string, data: unknown, init?: RequestInit) => Promise<FetckerResponse<T>> = async <T>(url: string, data: unknown, init?: RequestInit) => {
         try {
             const response = (await fetchTimeout(`${this.baseUrl}${url}`, {
                 ...init,
@@ -170,7 +172,7 @@ export class Fetcker extends FetckerInitOption {
                 ...init,
                 headers: { ...this.defaultHeaders, ...init?.headers },
                 timeout: this.requestTimeOut || 6000,
-                method : "DELETE"
+                method: "DELETE"
             })) as FetckerResponse<T>;
             response.data = await (response.json() as Promise<T>);
             return response;
@@ -179,13 +181,28 @@ export class Fetcker extends FetckerInitOption {
             return responseFactory<T>(e);
         }
     };
-    options: <T>(url: string, init?: RequestInit) => Promise<FetckerResponse<T>> = async <T>(url: string, init?: RequestInit) =>{
+    options: <T>(url: string, init?: RequestInit) => Promise<FetckerResponse<T>> = async <T>(url: string, init?: RequestInit) => {
         try {
             const response = (await fetchTimeout(`${this.baseUrl}${url}`, {
                 ...init,
                 headers: { ...this.defaultHeaders, ...init?.headers },
                 timeout: this.requestTimeOut || 6000,
-                method : "OPTIONS"
+                method: "OPTIONS"
+            })) as FetckerResponse<T>;
+            response.data = await (response.json() as Promise<T>);
+            return response;
+        } catch (e: any) {
+            this.onError && this.onError(e, isClient());
+            return responseFactory<T>(e);
+        }
+    };
+    head: <T>(url: string, init?: RequestInit) => Promise<FetckerResponse<T>> = async <T>(url: string, init?: RequestInit) => {
+        try {
+            const response = (await fetchTimeout(`${this.baseUrl}${url}`, {
+                ...init,
+                method : "HEAD",
+                headers: { ...this.defaultHeaders, ...init?.headers },
+                timeout: this.requestTimeOut || 6000
             })) as FetckerResponse<T>;
             response.data = await (response.json() as Promise<T>);
             return response;
