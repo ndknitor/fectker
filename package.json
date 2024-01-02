@@ -9,7 +9,8 @@
   },
   "author": "",
   "license": "GPL-3.0-or-later",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "typescript": "^5.3.3"
   }
 }
