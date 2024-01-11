@@ -26,14 +26,14 @@ export class Fetcker extends FetckerInitOption {
         const { [key]: removedHeader, ...remainingHeaders } = this.defaultHeaders!;
         this.defaultHeaders = remainingHeaders;
     };
-    setAuthorizationBearer: (token?: string) => void = (token?) => {
+    setAuthorizationHeader: (token?: string, scheme?: string) => void = (token?, scheme = "Bearer") => {
         if (token) {
-            this.setHeader("Authorization", `Bearer ${token}`);
+            this.setHeader("Authorization", `${scheme} ${token}`)
         }
-    };
-    removeAuthorizationBearer: () => void = () => {
+    }
+    removeAuthorizationHeader: () => void = () => {
         this.removeHeader("Authorization");
-    };
+    }
 
     get: <T>(url: string, init?: RequestInit) => Promise<FetckerResponse<T>> = async <T>(url: string, init?: RequestInit) => {
         try {
@@ -200,7 +200,7 @@ export class Fetcker extends FetckerInitOption {
         try {
             const response = (await fetchTimeout(`${this.baseUrl}${url}`, {
                 ...init,
-                method : "HEAD",
+                method: "HEAD",
                 headers: { ...this.defaultHeaders, ...init?.headers },
                 timeout: this.requestTimeOut || 6000
             })) as FetckerResponse<T>;
